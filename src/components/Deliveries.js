@@ -1,14 +1,25 @@
 import Delivery from './Delivery';
 
-const Deliveries = () => {
+const Deliveries = ({ deliveries, onChange, onDelete }) => {
   return (
-    <div>
+    <div className="delivery-list">
       <h2>Deliveries</h2>
-      <Delivery />
-      <Delivery />
-      <Delivery />
+      { deliveries.length ? (
+        deliveries.map((delivery) => (
+          <Delivery
+            key={delivery.id}
+            delivery={delivery}
+            onChange={onChange}
+            onDelete={onDelete}
+          />))
+        ) : (
+          <h3>No deliveries to display.</h3>
+        )
+      }
+      
+      
     </div>
   )
 }
 
-export default Deliveries
+export default Deliveries;

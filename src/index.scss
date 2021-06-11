@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #ddd;
+  font-size: 1.6rem;
+}
+
+.container {
+  max-width: 50vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #222;
+  width: 60%; // FIXME
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+form {
+  label {
+    color: green;
+    padding: 5px;
+  }
+  text {
+    margin: 20px;
+  }
+  ::placeholder {
+    color: red;
+  }
+  .form-control {
+    margin: 5px;
+  }
+}
+
+.delivery-list {
+  margin-top: 5rem;
+}
+
+.delivery-entry {
+  border: 1px solid black;
+  border-radius: 5px;
+  background: white;
+  margin-bottom: 5px;
+
+  .summary {
+    .detail {
+      font-size: 1.6rem;
+    }
+    .field-name {
+      font-weight: bold;
+    }
+  }
+}
