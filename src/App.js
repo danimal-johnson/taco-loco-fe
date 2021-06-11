@@ -1,12 +1,14 @@
 import './index.css';
 import { useState } from 'react';
+import Button from './components/Button';
 import Header from './components/Header';
 import Deliveries from './components/Deliveries';
 import AddDelivery from './components/AddDelivery';
 
+
 function App() {
   const [deliveries, setDeliveries] = useState([]);
-  const [displayAddForm, setDisplayAddForm] = useState(true); // TODO: false
+  const [displayAddForm, setDisplayAddForm] = useState(false);
 
   const addDelivery = (delivery) => {
     const id = Math.floor(Math.random() * 10000);
@@ -16,16 +18,27 @@ function App() {
 
   const updateDelivery = (delivery) => {
     // TODO
+    console.log(`Updating ${delivery.id} with ${delivery.name} and ${delivery.address}`);
   }
 
-  const deleteDelivery = (delivery) => {
-    setDeliveries(deliveries.filter(item => item.id !== delivery.id));
+  const deleteDelivery = (id) => {
+    console.log(`Deleting delivery #${id}`)
+    setDeliveries(deliveries.filter(item => item.id !== id));
+  }
+
+  const onClickAdd = () => {
+    setDisplayAddForm(!displayAddForm);
   }
 
   return (
     <div className="container">
       <Header />
-      { true && <AddDelivery onAdd={addDelivery}/> }
+      <Button
+        color={displayAddForm ? 'red' : 'green' }
+        text={displayAddForm ? 'Close' : 'Add'}
+        onClick={onClickAdd}
+      />
+      { displayAddForm && <AddDelivery onAdd={addDelivery}/> }
       <Deliveries 
         deliveries={deliveries}
         onChange={updateDelivery}

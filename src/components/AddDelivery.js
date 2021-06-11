@@ -41,7 +41,7 @@ const AddDelivery = ({ onAdd }) => {
         />
       </div>
 
-      <input type='submit' value='Create' />
+      <input type='submit' value='Create' className='btn' />
     </form>
   )
 }

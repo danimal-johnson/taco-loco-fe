@@ -1,23 +1,43 @@
 import { useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
+import { TiPencil } from 'react-icons/ti';
 import EditDelivery from './EditDelivery';
 
 const Delivery = ({ delivery, onChange, onDelete }) => {
   const [showEditForm, setShowEditForm] = useState(false);
 
+  const toggleEdit = () => {
+    setShowEditForm(!showEditForm);
+  }
+
+  const preChange = (data) => {
+    toggleEdit();
+    onChange(data);
+    
+  }
+
   return (
     <div className="delivery-entry">
       { showEditForm ? (
-        <EditDelivery />
+        <EditDelivery delivery={delivery} onChange={preChange} onCancel={toggleEdit}
+        />
       ) : (
         <div className='summary'>
-          <div className='detail'>
-            <span className="field-name">ID: </span>{delivery.id}
+          <div className='info'>
+            <h3>{delivery.name}</h3>
+            <p>{delivery.id}: {delivery.address}</p>
           </div>
-          <div className='detail'>
-            <span className="field-name">Name: </span>{delivery.name}
-          </div>
-          <div className='delivery'>
-            <span className="field-name">Address: </span>{delivery.address}
+          <div className='icons'>
+            <h3>
+              <TiPencil
+                style={{ color: 'orange', cursor: 'pointer' }}
+                onClick={toggleEdit}
+              />
+              <FaTimes
+                style={{ color: 'red', cursor: 'pointer' }}
+                onClick={() => onDelete(delivery.id)}
+              />
+            </h3>
           </div>
         </div>
       )}

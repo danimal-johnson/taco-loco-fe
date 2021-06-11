@@ -1,28 +1,21 @@
 import { useState } from 'react';
+import Button from './Button';
 
-const EditDelivery = ({ onEdit }) => {
+const EditDelivery = ({ delivery, onChange, onCancel }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!name || !address) {
-      alert('All fields are required.');
-      return;
+      onCancel();
     }
-    // TODO: onEdit({ name, address });
-    setName('');
-    setAddress('');
-    // Close the form
-  }
-
-  const onCancel = (e) => {
-    // TODO: Close the form (toggle display)
-  }
-
-  const onDelete = (e) => {
-    // TODO: Delete record
-    // Ignore fields
+    
+    onChange({
+      id: delivery.id,
+      name: name.length ? name : delivery.name,
+      address: address.length ? address : delivery.address
+    })
   }
 
   return (
@@ -31,22 +24,26 @@ const EditDelivery = ({ onEdit }) => {
         <label>Customer Name</label>
         <input
           type='text'
-          placeholder='my placeholder'
+          placeholder={delivery.name}
           value={name}
           onChange={ e => setName(e.target.value)}
         />
       </div>
       <div className='form-control'>
-        <label>Address</label>
+        <label>Customer Address</label>
         <input
           type='text'
-          placeholder='my address placeholder'
+          placeholder={delivery.address}
           value={address}
           onChange={ e => setAddress(e.target.value)}
         />
       </div>
-
-      <input type='submit' value='Create' />
+      <Button
+        color={'red'}
+        text={'Cancel'}
+        onClick={() => onCancel()}
+      />
+      <input type='submit' value='Update' className='btn' />
     </form>
   )
 }
