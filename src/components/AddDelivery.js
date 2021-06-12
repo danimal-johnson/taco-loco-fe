@@ -10,12 +10,8 @@ const AddDelivery = ({ onAdd }) => {
       alert('All fields are required.');
       return;
     }
-    // TODO: onAdd({ name, address });
-    onAdd({
-      id: Math.floor(Math.random() * 10000),
-      name: name,
-      address: address
-    });
+    onAdd({ name, address });
+    // Clear the fields after sending
     setName('');
     setAddress('');
   }

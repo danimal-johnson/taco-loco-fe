@@ -15,7 +15,17 @@ body {
   font-size: 1.6rem;
 }
 
-h1 { padding: 1rem; } // TODO: Create title class
+h1.title {
+  padding: 1rem;
+  font-weight: bold;
+
+}
+h2.subtitle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
 
 .container {
   max-width: 50vw;

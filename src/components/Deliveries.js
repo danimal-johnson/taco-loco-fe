@@ -3,7 +3,6 @@ import Delivery from './Delivery';
 const Deliveries = ({ deliveries, onChange, onDelete }) => {
   return (
     <div className="delivery-list">
-      <h2>Deliveries</h2>
       { deliveries.length ? (
         deliveries.map((delivery) => (
           <Delivery
