@@ -32,10 +32,12 @@ const Delivery = ({ delivery, onChange, onDelete }) => {
               <TiPencil
                 style={{ color: 'orange', cursor: 'pointer' }}
                 onClick={toggleEdit}
+                title='Edit'
               />
               <FaTimes
                 style={{ color: 'red', cursor: 'pointer' }}
                 onClick={() => onDelete(delivery.id)}
+                title='Delete'
               />
             </h3>
           </div>
