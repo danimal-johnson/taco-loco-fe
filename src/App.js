@@ -23,7 +23,6 @@ function App() {
 
   // ------ Get All Deliveries ------
   const fetchDeliveries = async () => {
-    console.log('Fetching...');
     const res = await fetch(API_URL + 'deliveries/');
     const data = await res.json();
 
@@ -34,7 +33,6 @@ function App() {
   // Not currently used. Keep for expansion.
   // eslint-disable-next-line no-unused-vars
   const fetchDelivery = async (id) => {
-    console.log(`Fetching delivery #${id}...`);
     const res = await fetch(API_URL + `deliveries/${id}`);
     const data = await res.json();
 
@@ -74,9 +72,7 @@ function App() {
 
     if (res.status === 200) {
       const newDelivery = await res.json();
-      console.log(newDelivery);
       setDeliveries([...deliveries.filter(d => d.id !== delivery.id), newDelivery]);
-      console.log(deliveries);
     } else {
       console.error(res.status, res.body);
     }
@@ -84,15 +80,13 @@ function App() {
 
   // ------ Delete a delivery ------
   const deleteDelivery = async (id) => {
-    console.log(`Deleting delivery #${id}`);
     const res = await fetch(API_URL + `deliveries/${id}`, {
       method: 'DELETE'
     });
     if (res.status === 200) {
-      console.log('Delete successful');
       setDeliveries(deliveries.filter(item => item.id !== id));
     } else {
-      console.log('Delete failed');
+      console.error(`Delete delivery ${id} failed`);
     }
   }
 

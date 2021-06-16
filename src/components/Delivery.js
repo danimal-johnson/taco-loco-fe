@@ -25,7 +25,7 @@ const Delivery = ({ delivery, onChange, onDelete }) => {
         <div className='summary'>
           <div className='info'>
             <h3>{delivery.name}</h3>
-            <p>{delivery.id}: {delivery.address}</p>
+            <p>{delivery.address}</p>
           </div>
           <div className='icons'>
             <h3>
