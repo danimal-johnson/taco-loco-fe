@@ -2,20 +2,20 @@ import { useState } from 'react';
 import Button from './Button';
 
 const EditDelivery = ({ delivery, onChange, onCancel }) => {
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+  const [nameField, setNameField] = useState('');
+  const [addressField, setAddressField] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!name || !address) {
+    if (!nameField && !addressField) {
       onCancel();
     }
-    
+
     onChange({
       id: delivery.id,
-      name: name.length ? name : delivery.name,
-      address: address.length ? address : delivery.address
-    })
+      name: nameField,
+      address: addressField
+    });
   }
 
   return (
@@ -25,8 +25,8 @@ const EditDelivery = ({ delivery, onChange, onCancel }) => {
         <input
           type='text'
           placeholder={delivery.name}
-          value={name}
-          onChange={ e => setName(e.target.value)}
+          value={nameField}
+          onChange={ e => setNameField(e.target.value)}
         />
       </div>
       <div className='form-control'>
@@ -34,8 +34,8 @@ const EditDelivery = ({ delivery, onChange, onCancel }) => {
         <input
           type='text'
           placeholder={delivery.address}
-          value={address}
-          onChange={ e => setAddress(e.target.value)}
+          value={addressField}
+          onChange={ e => setAddressField(e.target.value)}
         />
       </div>
       <Button

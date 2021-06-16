@@ -31,6 +31,8 @@ function App() {
   }
 
   // ------ Get a single delivery ------
+  // Not currently used. Keep for expansion.
+  // eslint-disable-next-line no-unused-vars
   const fetchDelivery = async (id) => {
     console.log(`Fetching delivery #${id}...`);
     const res = await fetch(API_URL + `deliveries/${id}`);
@@ -53,10 +55,31 @@ function App() {
   }
 
   // ------ Update a delivery ------
-  const updateDelivery = (delivery) => {
-    // TODO
-    console.log(`Updating ${delivery.id} with ${delivery.name} and ${delivery.address}`);
-    
+  const updateDelivery = async (delivery) => {
+
+    // At least one field must be changed
+    if (!delivery.name.length && !delivery.address.length) return;
+
+    let updateValues = {};
+    if (delivery.name.length) updateValues.name = delivery.name;
+    if (delivery.address.length) updateValues.address = delivery.address;
+
+    const res = await fetch(API_URL + `deliveries/${delivery.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(updateValues)
+    });
+
+    if (res.status === 200) {
+      const newDelivery = await res.json();
+      console.log(newDelivery);
+      setDeliveries([...deliveries.filter(d => d.id !== delivery.id), newDelivery]);
+      console.log(deliveries);
+    } else {
+      console.error(res.status, res.body);
+    }
   }
 
   // ------ Delete a delivery ------
